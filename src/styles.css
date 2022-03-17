@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #e8ecf1;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 img {
@@ -31,7 +31,8 @@ button {
   transition: 300ms ease;
   padding: 10px;
   cursor: pointer;
-  background: #fff;
+  background: #424242;
+  color: #fff;
   text-transform: capitalize;
   letter-spacing: 1.2px;
   border-radius: 5px;
@@ -47,4 +48,12 @@ button:hover {
 button:active {
   transition: 300ms ease;
   transform: scale(1.2);
+}
+
+#root {
+  max-width: 1440px;
+  padding: 60px 20px 50px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }

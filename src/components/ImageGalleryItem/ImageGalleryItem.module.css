@@ -1,0 +1,32 @@
+.galleryItem {
+  display: flex;
+  background-color: lightblue;
+  width: calc((100% / 4) - 20px);
+  margin: 0 20px 20px 0;
+  align-items: stretch;
+  height: 250px;
+}
+
+.galleryItem img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+@media (max-width: 998px) {
+  .galleryItem {
+    width: calc((100% / 3) - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .galleryItem {
+    width: calc((100% / 2) - 20px);
+  }
+}
+
+@media (max-width: 620px) {
+  .galleryItem {
+    width: 100%;
+  }
+}

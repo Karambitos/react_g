@@ -5,6 +5,10 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 img {
   display: block;
   max-width: 100%;

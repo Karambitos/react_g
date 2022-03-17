@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Searchbar } from './components/Searchbar'
 import { ImageGallery } from './components/ImageGallery'
 import { Modal } from './components/Modal'
+import { Loader } from './components/Loader'
 import { Button } from './components/Button'
 import axios from 'axios';
 
@@ -14,6 +15,7 @@ export default class App extends Component {
     showModal: false,
     imagesArr: [],
     curentPage: 1,
+    isLoading: false,
   }
   componentDidMount = () => {
     this.fetchImages();
@@ -43,17 +45,22 @@ export default class App extends Component {
 
   fetchImages = data => {
     const value = data ? Object.values(data) : 'Ukraine';
+    this.setState({
+      isLoading: true,
+    })
     axios.get(`https://pixabay.com/api/?key=${API_KEY}&q=${value}&per_page=8&page=${this.state.curentPage}`)
       .then((response) => {
         this.setState(prevSate => ({
           imagesArr: [...prevSate.imagesArr, ...response.data.hits],
         }))
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       })
-      .then(function () {
-        // always executed
+      .finally(() => {
+        this.setState({
+          isLoading: false,
+        })
       });
   }
 
@@ -71,13 +78,14 @@ export default class App extends Component {
   }
 
   render() {
-    const { showModal, imageSrc, filter, imagesArr } = this.state;
+    const { showModal, imageSrc, filter, imagesArr, isLoading } = this.state;
 
     return (
       <>
         {showModal && <Modal onClose={this.toggleModal}>
           <img src={imageSrc} alt="" />
         </Modal>}
+        {isLoading && <Loader />}
         <Searchbar onSubmit={this.onSubmitHandle} />
         <ImageGallery currentImg={this.currentImg} filerUpdate={filter} imagesArr={imagesArr} />
         <Button onClick={this.loadMore}>Load more</Button>

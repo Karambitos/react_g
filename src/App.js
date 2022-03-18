@@ -21,7 +21,7 @@ export default class App extends Component {
     this.fetchImages();
   };
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate = (_, prevState) => {
     if (prevState.curentPage !== this.state.curentPage) {
       this.fetchImages(this.state.filter);
     } else if (prevState.filter !== this.state.filter) {
@@ -30,9 +30,7 @@ export default class App extends Component {
   }
 
   toggleModal = () => {
-    this.setState(state => ({
-      showModal: !state.showModal
-    }))
+    this.setState({showModal: !this.state.showModal})
   }
 
   onSubmitHandle = (data) => {

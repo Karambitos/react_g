@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Searchbar } from './components/Searchbar'
-import { ImageGallery } from './components/ImageGallery'
+import Searchbar from './components/Searchbar/Searchbar'
+import ImageGallery from './components/ImageGallery/ImageGallery'
 import { Modal } from './components/Modal'
-import { Loader } from './components/Loader'
-import { Button } from './components/Button'
+import Loader from './components/Loader/Loader'
+import Button from './components/Button/Button'
 import axios from 'axios';
 
 const API_KEY = '26096041-fcc50392af320bb0741d0ce61';
@@ -30,10 +30,11 @@ export default class App extends Component {
   }
 
   toggleModal = () => {
-    this.setState({showModal: !this.state.showModal})
+    this.setState({ showModal: !this.state.showModal })
   }
 
   onSubmitHandle = (data) => {
+    console.log(data);
     this.setState({
       filter: data,
       curentPage: 1,
@@ -85,6 +86,7 @@ export default class App extends Component {
         </Modal>}
         {isLoading && <Loader />}
         <Searchbar onSubmit={this.onSubmitHandle} />
+        {/* <Searchbar /> */}
         <ImageGallery currentImg={this.currentImg} filerUpdate={filter} imagesArr={imagesArr} />
         <Button onClick={this.loadMore}>Load more</Button>
       </>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import Searchbar from './components/Searchbar/Searchbar'
-import ImageGallery from './components/ImageGallery/ImageGallery'
+import { Searchbar } from './components/Searchbar/Searchbar'
+import { ImageGallery } from './components/ImageGallery/ImageGallery'
 import { Modal } from './components/Modal'
-import Loader from './components/Loader/Loader'
-import Button from './components/Button/Button'
+import Loader from './components/Loader'
+import { Button } from './components/Button'
 import axios from 'axios';
 
 const API_KEY = '26096041-fcc50392af320bb0741d0ce61';
@@ -43,7 +43,8 @@ export default class App extends Component {
   };
 
   fetchImages = data => {
-    const value = data ? Object.values(data) : 'Ukraine';
+    // const value = data ? Object.values(data) : 'Ukraine';
+    const value = data ? data : 'Ukraine';
     this.setState({
       isLoading: true,
     })
@@ -86,7 +87,6 @@ export default class App extends Component {
         </Modal>}
         {isLoading && <Loader />}
         <Searchbar onSubmit={this.onSubmitHandle} />
-        {/* <Searchbar /> */}
         <ImageGallery currentImg={this.currentImg} filerUpdate={filter} imagesArr={imagesArr} />
         <Button onClick={this.loadMore}>Load more</Button>
       </>

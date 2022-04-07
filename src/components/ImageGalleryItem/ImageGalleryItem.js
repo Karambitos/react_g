@@ -1,22 +1,22 @@
-import { Component } from 'react'
+import React from 'react'
 import styles from '../ImageGalleryItem/ImageGalleryItem.module.css';
 
-export class ImageGalleryItem extends Component {
-    onClick = (event) => {
-        this.props.currentImg(event.target.src)
-    }
 
-    render() {
-        return (
-            <>
-                {
-                    this.props.imagesArr.map(({ largeImageURL, id, tags }) => {
-                        return <li key={id} className={styles.galleryItem} onClick={this.onClick}>
-                            <img src={largeImageURL} alt={tags} />
-                        </li>
-                    })
-                }
-            </>
-        )
+function ImageGalleryItem({ imagesArr, currentImg }) {
+    const onClick = (event) => {
+        currentImg(event.target.src)
     }
+    return (
+        <>
+            {
+                imagesArr.map(({ largeImageURL, id, tags }) => {
+                    return <li key={id} className={styles.galleryItem} onClick={onClick}>
+                        <img src={largeImageURL} alt={tags} />
+                    </li>
+                })
+            }
+        </>
+    )
 }
+
+export { ImageGalleryItem }

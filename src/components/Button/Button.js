@@ -7,6 +7,4 @@ function Button({ onClick, children }) {
         </button>
     )
 }
-
-
 export { Button }

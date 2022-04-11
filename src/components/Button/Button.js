@@ -1,12 +1,10 @@
-import { Component } from 'react'
+import React from 'react'
 
-export class Button extends Component {
-
-    render() {
-        return (
-            <button onClick={this.props.onClick}>
-                {this.props.children}
-            </button>
-        )
-    }
+function Button({ onClick, children }) {
+    return (
+        <button onClick={onClick}>
+            {children}
+        </button>
+    )
 }
+export { Button }
